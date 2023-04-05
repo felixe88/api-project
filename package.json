@@ -4,8 +4,12 @@
     "format": "prettier --write .",
     "test": "jest",
     "task": "echo 'Doing a task...",
+    "lint": "eslint src/ --cache --fix",
     "build": "tsc",
-    "lint": "eslint src/ --cache --fix"
+    "build:dev": "tsc --watch",
+    "start": "node --enable-source-maps dist/server.js",
+    "start:dev": "nodemon --watch dist/",
+    "dev": "npm run build && concurrently 'npm:build:dev' 'npm:start:dev'"
   },
   "engines": {
     "node": ">=16"
@@ -18,9 +22,11 @@
     "@types/node": "^18.15.11",
     "@typescript-eslint/eslint-plugin": "^5.57.0",
     "@typescript-eslint/parser": "^5.57.0",
+    "concurrently": "^8.0.1",
     "eslint": "^8.37.0",
     "eslint-config-prettier": "^8.8.0",
     "jest": "^29.5.0",
+    "nodemon": "^2.0.22",
     "prettier": "2.8.7",
     "ts-jest": "^29.1.0",
     "typescript": "^5.0.3"
